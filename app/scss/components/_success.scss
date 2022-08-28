@@ -1,0 +1,21 @@
+@use '../abstracts' as *;
+
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  h2 {
+    font-size: var(--fs-5);
+    text-transform: uppercase;
+    letter-spacing: 0.125em;
+    margin-block: rem(40) rem(28);
+  }
+
+  p {
+    margin-block-end: rem(48);
+    font-size: var(--fs-3);
+    color: var(--clr-violet-7);
+  }
+}

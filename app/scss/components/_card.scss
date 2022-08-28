@@ -1,0 +1,154 @@
+@use '../abstracts' as *;
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--clr-white);
+  text-transform: uppercase;
+
+  @include breakpoint(large) {
+    height: 100%;
+  }
+
+  &__wrapper {
+    width: min(100%, rem(420));
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    padding: rem(32) rem(16) rem(50);
+
+    @include breakpoint-down(xsmall) {
+      justify-content: center;
+    }
+
+    @include breakpoint(medium) {
+      width: rem(340);
+      flex-direction: column;
+      row-gap: rem(38);
+      padding: 0;
+    }
+
+    @include breakpoint(large) {
+      width: rem(545);
+    }
+  }
+
+  .front,
+  .back {
+    --card-width: 17.875rem;
+    --card-height: 9.875rem;
+    width: var(--card-width);
+    height: var(--card-height);
+    background: var(--bg-card-url) center / cover no-repeat;
+    border-radius: rem(5);
+    box-shadow: rem(8) rem(8) rem(20) rgba(#000000, 0.2);
+
+    @include breakpoint-down(xsmall) {
+      --card-width: 100%;
+      --card-height: auto;
+      aspect-ratio: 1.82/1;
+    }
+
+    @include breakpoint(medium) {
+      box-shadow: rem(6) rem(8) rem(20) rem(4) rgba(#000000, 0.12);
+    }
+
+    @include breakpoint(large) {
+      --card-width: 28rem;
+      --card-height: 15.375rem;
+      border-radius: rem(10);
+      box-shadow: rem(4) rem(10) rem(25) rem(10) rgba(#000000, 0.11);
+    }
+  }
+
+  .front {
+    --bg-card-url: url('../images/bg-card-front.png');
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: rem(-40);
+    left: rem(16);
+    padding: rem(18) rem(20) rem(20);
+
+    @include breakpoint-down(xsmall) {
+      --card-width: calc(100% - 2rem);
+      left: auto;
+      padding: rem(18);
+    }
+
+    @include breakpoint(medium) {
+      position: static;
+    }
+
+    @include breakpoint(large) {
+      padding: rem(28) rem(32);
+    }
+
+    &__logo {
+      width: max-content;
+      height: rem(30);
+
+      @include breakpoint-down(xsmall) {
+        height: rem(26);
+      }
+
+      @include breakpoint(large) {
+        height: rem(47);
+      }
+    }
+
+    &__infos {
+      margin-block-start: auto;
+    }
+
+    &__number {
+      font-size: var(--fs-4);
+      letter-spacing: 0.125em;
+    }
+
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+      margin-block-start: rem(20);
+      font-size: var(--fs-1);
+      font-weight: var(--fw-4);
+
+      @include breakpoint(large) {
+        margin-block-start: rem(32);
+      }
+    }
+
+    &__name {
+      max-width: 24ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .back {
+    --bg-card-url: url('../images/bg-card-back.png');
+    padding-block-start: rem(66);
+    padding-inline-end: rem(36);
+    text-align: end;
+
+    @include breakpoint-down(xsmall) {
+      padding-block-start: 23%;
+      padding-inline-end: 12.5%;
+    }
+
+    @include breakpoint(medium) {
+      align-self: flex-end;
+    }
+
+    @include breakpoint(large) {
+      padding-block-start: rem(111);
+      padding-inline-end: rem(58);
+    }
+
+    &__cvc {
+      font-size: var(--fs-1);
+    }
+  }
+}

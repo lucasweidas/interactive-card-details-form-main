@@ -1,0 +1,50 @@
+@use '../abstracts' as *;
+
+.main {
+  width: 100%;
+  height: 100%;
+
+  &__container {
+    width: 100%;
+    height: 100%;
+    background: url('../images/bg-main-mobile.png') top left / 100% rem(240) no-repeat;
+
+    @include breakpoint-down(xsmall) {
+      background-size: 100% 75vw;
+    }
+
+    @include breakpoint(medium) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 4vw;
+      background-image: url('../images/bg-main-desktop.png');
+      background-size: 30% 100%;
+    }
+
+    @include breakpoint(large) {
+      background-size: 36% 100%;
+    }
+
+    @include breakpoint(xlarge) {
+      column-gap: rem(126);
+    }
+  }
+
+  &__wrapper {
+    width: min(100%, rem(440));
+    padding: rem(94) rem(24) rem(50);
+    margin-inline: auto;
+
+    @include breakpoint-down(xsmall) {
+      padding-block-start: rem(84);
+      padding-inline: rem(16);
+    }
+
+    @include breakpoint(medium) {
+      width: min(45%, rem(382));
+      padding: 0;
+      margin-inline: 0;
+    }
+  }
+}

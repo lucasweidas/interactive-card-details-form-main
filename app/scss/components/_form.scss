@@ -1,0 +1,88 @@
+@use '../abstracts' as *;
+
+.form {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(22);
+    text-transform: uppercase;
+
+    @include breakpoint(large) {
+      row-gap: rem(28);
+    }
+  }
+
+  &__label {
+    width: max-content;
+    display: block;
+    margin-block-end: rem(12);
+    font-size: var(--fs-2);
+    letter-spacing: 0.125em;
+    color: var(--clr-violet-9);
+  }
+
+  &__input {
+    --clr-border: linear-gradient(var(--clr-violet-5), var(--clr-violet-5));
+    width: 100%;
+    padding: rem(10) rem(15);
+    background: linear-gradient(var(--clr-white), var(--clr-white)) padding-box, var(--clr-border) border-box;
+    border: rem(1) solid transparent;
+    border-radius: var(--border-radius-1);
+    font-size: var(--fs-3);
+    color: var(--clr-violet-9);
+
+    &::placeholder {
+      color: var(--clr-violet-5);
+    }
+
+    &:focus-visible {
+      --clr-border: var(--linear-gradient-1);
+      outline: none;
+    }
+
+    &.invalid {
+      --clr-border: linear-gradient(var(--clr-red), var(--clr-red));
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    column-gap: clamp(rem(12), 3vw, rem(20));
+  }
+
+  &__date {
+    border: none;
+
+    .form__wrapper {
+      column-gap: clamp(rem(8), 2vw, rem(10));
+    }
+
+    .form__input {
+      width: clamp(rem(72), 18vw, rem(80));
+
+      @include breakpoint-down(xsmall) {
+        width: rem(66);
+      }
+    }
+  }
+
+  &__cvc {
+    width: 100%;
+  }
+
+  &__submit {
+    margin-block-start: rem(6);
+
+    @include breakpoint(large) {
+      margin-block-start: rem(12);
+    }
+  }
+
+  &__error {
+    display: inline-block;
+    margin-block-start: rem(10);
+    font-size: var(--fs-2);
+    color: var(--clr-red);
+    text-transform: none;
+  }
+}
