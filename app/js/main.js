@@ -55,7 +55,7 @@ form.addEventListener('submit', validateFormSubmit);
 success.addEventListener('click', filterSuccessClick);
 
 function filterInput(evt) {
-  const { target, inputType } = evt;
+  const { target, inputType, data } = evt;
   let textElement = null;
   let isValid = false;
 
@@ -66,7 +66,8 @@ function filterInput(evt) {
       break;
     case inputNumber:
       const isDelete = inputType === 'deleteContentBackward' || inputType === 'deleteContentForward';
-      isValid = validateInputValue(target, /^\d{0,16}$/);
+      const value = data === ' ' ? target.value : removeSpaces(target.value);
+      isValid = validateInputValue(target, /^\d{0,16}$/, value);
       isValid && formatCreditCardNumber(target, isDelete);
       textElement = textNumber;
       break;
@@ -96,8 +97,7 @@ function filterSuccessClick({ target }) {
   form.classList.remove('hidden');
 }
 
-function validateInputValue(input, filter) {
-  const value = input.hasAttribute('data-inp-number') ? removeSpaces(input.value) : input.value;
+function validateInputValue(input, filter, value = input.value) {
   let cursor = input.selectionStart;
   let isValid = false;
 
@@ -248,7 +248,7 @@ function isInputFilled(input) {
     case inputName:
       return validateInputValue(input, /^[a-zA-Z]+(?:[\s]+[a-zA-Z]+)*$/);
     case inputNumber:
-      return validateInputValue(input, verifyCreditCardBrand(input));
+      return validateInputValue(input, verifyCreditCardBrand(input), removeSpaces(input.value));
     case inputMonth:
       return validateInputValue(input, /^(0[1-9]|1[0-2])$/);
     case inputYear:
